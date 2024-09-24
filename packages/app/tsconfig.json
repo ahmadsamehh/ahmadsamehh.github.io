@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "resolveJsonModule": true,
+    "paths": {
+      "@solangide/commontypes": ["../_generated/commontypes/src"],
+      "@solangide/commontypes/*": ["../_generated/commontypes/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "exclude": []
+}
