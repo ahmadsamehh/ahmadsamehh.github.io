@@ -6,106 +6,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ahmad Sameh – DevOps / Cloud Engineer</title>
 
+    <meta name="description"
+        content="Ahmad Sameh – DevOps / Cloud Engineer. Docker, CI/CD, reverse proxies, and production deployments." />
+
     <style>
         :root {
-            --bg: #0f172a;
-            --card: #111827;
+            --bg: #0b1220;
+            --bg2: #070c16;
+            --card: rgba(255, 255, 255, 0.06);
+            --border: rgba(255, 255, 255, 0.10);
             --text: #e5e7eb;
-            --muted: #9ca3af;
+            --muted: #aab2c0;
             --accent: #38bdf8;
+            --accent2: #a78bfa;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            --radius: 16px;
+        }
+
+        [data-theme="light"] {
+            --bg: #f6f7fb;
+            --bg2: #ffffff;
+            --card: rgba(0, 0, 0, 0.04);
+            --border: rgba(0, 0, 0, 0.10);
+            --text: #0f172a;
+            --muted: #475569;
+            --accent: #0284c7;
+            --accent2: #6d28d9;
+            --shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            background: linear-gradient(180deg, #020617, var(--bg));
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             color: var(--text);
+            background: radial-gradient(1200px 800px at 20% 10%, rgba(56, 189, 248, 0.12), transparent 55%),
+                radial-gradient(900px 700px at 80% 15%, rgba(167, 139, 250, 0.12), transparent 55%),
+                linear-gradient(180deg, var(--bg2), var(--bg));
+            min-height: 100vh;
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 3rem 1.5rem;
-        }
-
-        header {
-            margin-bottom: 3rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .role {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .intro {
-            max-width: 700px;
-            color: var(--muted);
-        }
-
-        section {
-            margin-top: 3rem;
-        }
-
-        h2 {
-            margin-bottom: 1.5rem;
-            font-size: 1.6rem;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .card ul {
-            margin: 1rem 0;
-            padding-left: 1.2rem;
-            color: var(--muted);
-        }
-
-        .card a {
+        a {
             color: var(--accent);
             text-decoration: none;
-            font-weight: 500;
         }
 
-        .card a:hover {
+        a:hover {
             text-decoration: underline;
         }
 
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 44px 18px 60px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.12);
+        }
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn {
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 12px;
+            box-shadow: none;
+            transition: transform 0.05s ease, border-color 0.2s ease;
+        }
+
+        .btn:hover {
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        header.hero {
+            padding: 26px 0 10px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: clamp(2.0rem, 3vw, 2.7rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+
+        .role {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .lead {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .quick {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        section {
+            margin-top: 28px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            grid-column: span 12;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (min-width: 900px) {
+            .card.half {
+                grid-column: span 6;
+            }
+
+            .card.third {
+                grid-column: span 4;
+            }
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .muted {
             color: var(--muted);
         }
 
-        .contact a {
-            color: var(--accent);
+        ul {
+            padding-left: 18px;
+            margin-top: 10px;
+            color: var(--muted);
+        }
+
+        .project-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .badge-img {
+            height: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .actions {
+            margin-top: 14px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .linkbtn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.14);
+            border: 1px solid rgba(56, 189, 248, 0.26);
+            color: var(--text);
+            font-weight: 650;
             text-decoration: none;
+        }
+
+        .linkbtn:hover {
+            text-decoration: none;
+            border-color: rgba(56, 189, 248, 0.50);
+        }
+
+        .linkbtn.secondary {
+            background: rgba(167, 139, 250, 0.12);
+            border-color: rgba(167, 139, 250, 0.26);
+        }
+
+        footer {
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
         }
     </style>
 </head>
@@ -113,71 +269,178 @@
 <body>
     <div class="container">
 
-        <!-- Header -->
-        <header>
+        <!-- Top bar -->
+        <div class="topbar">
+            <div class="brand">
+                <div class="dot"></div>
+                <div class="muted">Portfolio</div>
+            </div>
+
+            <div class="navlinks">
+                <a class="chip" href="#projects">Projects</a>
+                <a class="chip" href="#about">About</a>
+                <a class="chip" href="#contact">Contact</a>
+                <button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">Toggle theme</button>
+            </div>
+        </div>
+
+        <!-- Hero -->
+        <header class="hero">
             <h1>Ahmad Sameh</h1>
-            <div class="role">DevOps / Cloud Engineer</div>
-            <p class="intro">
-                I build, containerize, and deploy production-ready backend systems.
-                Focused on Docker, CI/CD, cloud infrastructure, and clean automation.
+            <div class="role">DevOps / Cloud Engineer <span class="muted">• Docker • CI/CD • Reverse Proxy •
+                    Cloud</span></div>
+            <p class="lead">
+                I build and deploy production-ready systems: containerized services, secure routing, and automated
+                pipelines.
+                I focus on clean infrastructure, reproducible deployments, and “it works in production” standards.
             </p>
+
+            <div class="quick">
+                <span class="chip">Docker & Compose</span>
+                <span class="chip">GitHub Actions</span>
+                <span class="chip">Caddy / Nginx</span>
+                <span class="chip">AWS / Linux</span>
+            </div>
         </header>
 
         <!-- Projects -->
-        <section>
-            <h2>Featured Projects</h2>
+        <section id="projects">
+            <div class="grid">
 
-            <div class="projects">
+                <div class="card">
+                    <h2>Featured Projects</h2>
+                    <p class="muted">Two real projects that show both clean CI and real production complexity.</p>
+                </div>
 
                 <!-- Project A -->
-                <div class="card">
-                    <h3>Production Node.js API</h3>
-                    <p>Minimal backend service with real CI practices.</p>
+                <div class="card half">
+                    <div class="project-title">
+                        <div>
+                            <h2>Production Node.js API (CI + Docker)</h2>
+                            <div class="muted">Minimal service with professional automation.</div>
+                        </div>
+
+                        <div class="badges">
+                            <!-- Replace these badge URLs (see instructions below) -->
+                            <img class="badge-img" alt="CI status badge"
+                                src="[![.github/workflows/build-push.yml](https://github.com/ahmadsamehh/mini-node-app/actions/workflows/build-push.yml/badge.svg)](https://github.com/ahmadsamehh/mini-node-app/actions/workflows/build-push.yml)" />
+                            <img class="badge-img" alt="Docker build badge"
+                                src="[![.github/workflows/build-push.yml](https://github.com/ahmadsamehh/mini-node-app/actions/workflows/build-push.yml/badge.svg)](https://github.com/ahmadsamehh/mini-node-app/actions/workflows/build-push.yml)" />
+                        </div>
+                    </div>
 
                     <ul>
-                        <li>Dockerized Node.js API</li>
-                        <li>GitHub Actions CI (build & push on every commit)</li>
-                        <li>Reverse proxy with Caddy</li>
-                        <li>Clean repo structure & documentation</li>
+                        <li>Dockerized Node.js API with health endpoint for monitoring.</li>
+                        <li>GitHub Actions builds and pushes image to Docker Hub on every push.</li>
+                        <li>Reverse proxy routing with Caddy (TLS-ready pattern).</li>
+                        <li>Clean README + predictable structure (easy for anyone to run).</li>
                     </ul>
 
-                    <a href="https://github.com/ahmadsamehh/mini-node-app" target="_blank">
-                        View repository →
-                    </a>
+                    <div class="actions">
+                        <!-- Replace YOUR_NODE_REPO -->
+                        <a class="linkbtn" target="_blank" href="https://github.com/ahmadsamehh/mini-node-app">View
+                            repo →</a>
+                        <!-- Replace YOUR_NODE_DOCKERHUB if you want -->
+                        <a class="linkbtn secondary" target="_blank"
+                            href="https://hub.docker.com/r/ahmadsamehh/mini-node-app">Docker Hub →</a>
+                    </div>
                 </div>
 
                 <!-- Project B -->
-                <div class="card">
-                    <h3>Solang Playground Deployment</h3>
-                    <p>Real-world multi-service production deployment.</p>
+                <div class="card half">
+                    <div class="project-title">
+                        <div>
+                            <h2>Solang Playground Deployment (Multi-service)</h2>
+                            <div class="muted">Production-style deployment with routing + analytics.</div>
+                        </div>
+
+                        <div class="badges">
+                            <!-- Optional badge -->
+                            <img class="badge-img" alt="CI status badge" src="YOUR_BADGE_URL_SOLANG" />
+                        </div>
+                    </div>
 
                     <ul>
-                        <li>Multi-container architecture (frontend, API, analytics)</li>
-                        <li>Docker Compose orchestration</li>
-                        <li>Caddy reverse proxy with routing & TLS</li>
-                        <li>CI/CD pipeline to cloud VM</li>
+                        <li>Multi-container setup (frontend + API + analytics) with Docker Compose.</li>
+                        <li>Reverse proxy routing (example: /compile, /analytics) with TLS setup.</li>
+                        <li>Automated build & push workflow; deployment-ready structure.</li>
+                        <li>Production-minded hardening: predictable ports, logging, and routing rules.</li>
                     </ul>
 
-                    <a href="https://github.com/ahmadsamehh/solang-playground-official" target="_blank">
-                        View repository →
-                    </a>
+                    <div class="actions">
+                        <a class="linkbtn" target="_blank"
+                            href="https://github.com/ahmadsamehh/solang-playground-official">View repo →</a>
+                    </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- Contact -->
-        <footer>
-            <h2>Contact</h2>
-            <div class="contact">
-                <p>Email: <a href="mailto:ahmadsamehh@gmail.com">ahmadsamehh@gmail.com</a></p>
-                <p>GitHub: <a href="https://github.com/ahmadsamehh" target="_blank">github.com/ahmadsamehh</a></p>
-                <p>LinkedIn: <a href="https://linkedin.com/in/ahmadsamehh"
-                        target="_blank">linkedin.com/in/ahmadsamehh</a></p>
+        <!-- About -->
+        <section id="about">
+            <div class="grid">
+                <div class="card">
+                    <h2>About</h2>
+                    <p class="muted">
+                        I like building systems that are easy to run, easy to debug, and safe to deploy.
+                        I’m comfortable with networking concepts (CCNA/CCNP background) and I apply that in real
+                        deployments.
+                    </p>
+
+                    <ul>
+                        <li><strong>Strength:</strong> turning “works on my machine” into automated, repeatable
+                            deployments.</li>
+                        <li><strong>Focus:</strong> CI/CD, Docker, reverse proxies, cloud VM deployments, and clean
+                            documentation.</li>
+                        <li><strong>Style:</strong> pragmatic — ship small, improve fast, keep it reliable.</li>
+                    </ul>
+                </div>
             </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="grid">
+                <div class="card">
+                    <h2>Contact</h2>
+                    <p class="muted">If you want help deploying a service or building a clean CI/CD pipeline, reach out.
+                    </p>
+
+                    <ul>
+                        <li>Email: <a href="mailto:ahmadsamehh@gmail.com">ahmadsamehh@gmail.com</a></li>
+                        <li>GitHub: <a target="_blank" href="https://github.com/ahmadsamehh">github.com/ahmadsamehh</a>
+                        </li>
+                        <li>LinkedIn: <a target="_blank"
+                                href="https://linkedin.com/in/ahmadsamehh">linkedin.com/in/ahmadsamehh</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="muted">© <span id="year"></span> Ahmad Sameh • Built with plain HTML/CSS • Hosted on GitHub
+                Pages</div>
         </footer>
 
     </div>
+
+    <script>
+        // Year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Theme toggle (stored in localStorage)
+        const btn = document.getElementById("themeBtn");
+        const saved = localStorage.getItem("theme");
+        if (saved) document.documentElement.setAttribute("data-theme", saved);
+
+        btn.addEventListener("click", () => {
+            const current = document.documentElement.getAttribute("data-theme");
+            const next = current === "light" ? "" : "light";
+            if (next) document.documentElement.setAttribute("data-theme", next);
+            else document.documentElement.removeAttribute("data-theme");
+            localStorage.setItem("theme", next || "");
+        });
+    </script>
 </body>
 
 </html>
