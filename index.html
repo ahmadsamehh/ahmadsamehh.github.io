@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahmad Sameh – DevOps / Cloud Engineer</title>
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --accent: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #020617, var(--bg));
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 3rem 1.5rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .intro {
+            max-width: 700px;
+            color: var(--muted);
+        }
+
+        section {
+            margin-top: 3rem;
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .card ul {
+            margin: 1rem 0;
+            padding-left: 1.2rem;
+            color: var(--muted);
+        }
+
+        .card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+        }
+
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <h1>Ahmad Sameh</h1>
+            <div class="role">DevOps / Cloud Engineer</div>
+            <p class="intro">
+                I build, containerize, and deploy production-ready backend systems.
+                Focused on Docker, CI/CD, cloud infrastructure, and clean automation.
+            </p>
+        </header>
+
+        <!-- Projects -->
+        <section>
+            <h2>Featured Projects</h2>
+
+            <div class="projects">
+
+                <!-- Project A -->
+                <div class="card">
+                    <h3>Production Node.js API</h3>
+                    <p>Minimal backend service with real CI practices.</p>
+
+                    <ul>
+                        <li>Dockerized Node.js API</li>
+                        <li>GitHub Actions CI (build & push on every commit)</li>
+                        <li>Reverse proxy with Caddy</li>
+                        <li>Clean repo structure & documentation</li>
+                    </ul>
+
+                    <a href="https://github.com/ahmadsamehh/mini-node-app" target="_blank">
+                        View repository →
+                    </a>
+                </div>
+
+                <!-- Project B -->
+                <div class="card">
+                    <h3>Solang Playground Deployment</h3>
+                    <p>Real-world multi-service production deployment.</p>
+
+                    <ul>
+                        <li>Multi-container architecture (frontend, API, analytics)</li>
+                        <li>Docker Compose orchestration</li>
+                        <li>Caddy reverse proxy with routing & TLS</li>
+                        <li>CI/CD pipeline to cloud VM</li>
+                    </ul>
+
+                    <a href="https://github.com/ahmadsamehh/solang-playground-official" target="_blank">
+                        View repository →
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <footer>
+            <h2>Contact</h2>
+            <div class="contact">
+                <p>Email: <a href="mailto:ahmadsamehh@gmail.com">ahmadsamehh@gmail.com</a></p>
+                <p>GitHub: <a href="https://github.com/ahmadsamehh" target="_blank">github.com/ahmadsamehh</a></p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/ahmadsamehh"
+                        target="_blank">linkedin.com/in/ahmadsamehh</a></p>
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+</html>
