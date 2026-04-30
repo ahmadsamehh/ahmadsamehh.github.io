@@ -7,12 +7,26 @@
     <title>Ahmad Sameh | DevOps, Cloud &amp; Blockchain Tooling</title>
     <meta name="description"
         content="Ahmad Sameh builds Dockerized services, CI/CD pipelines, AWS deployments, and Solang/Soroban smart contract tooling." />
+    <script>
+        (() => {
+            const storedTheme = localStorage.getItem("theme");
+            const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            document.documentElement.dataset.theme = storedTheme || systemTheme;
+        })();
+    </script>
 
     <style>
         :root {
+            color-scheme: light;
             --page: #f5f7fa;
             --surface: #ffffff;
             --surface-2: #eef4f3;
+            --panel: rgba(255, 255, 255, 0.9);
+            --panel-soft: rgba(255, 255, 255, 0.76);
+            --header: rgba(245, 247, 250, 0.88);
+            --page-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.72));
+            --grid-a: rgba(15, 118, 110, 0.05);
+            --grid-b: rgba(109, 93, 252, 0.04);
             --ink: #111827;
             --muted: #5f6b7a;
             --line: #dbe3ea;
@@ -22,8 +36,60 @@
             --violet: #6d5dfc;
             --amber: #b45309;
             --shadow: 0 18px 45px rgba(17, 24, 39, 0.08);
+            --card-shadow: 0 12px 28px rgba(17, 24, 39, 0.06);
+            --feature-bg: linear-gradient(180deg, rgba(238, 244, 243, 0.88), rgba(255, 255, 255, 0.92));
+            --feature-border: rgba(15, 118, 110, 0.34);
+            --year-border: rgba(15, 118, 110, 0.18);
+            --tag-bg: #f0f4f8;
+            --tag-border: #d8e1e9;
+            --tag-text: #26313f;
+            --contact-bg: linear-gradient(90deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.92));
+            --contact-text: #ffffff;
+            --contact-muted: #d7dde5;
+            --contact-kicker: #8be0d8;
+            --contact-button-bg: #ffffff;
+            --contact-button-text: #111827;
+            --contact-button-border: rgba(255, 255, 255, 0.38);
+            --contact-button-hover: rgba(255, 255, 255, 0.08);
+            --inverse: #ffffff;
             --radius: 8px;
             --max: 1160px;
+        }
+
+        [data-theme="dark"] {
+            color-scheme: dark;
+            --page: #0c111b;
+            --surface: #111827;
+            --surface-2: #162032;
+            --panel: rgba(17, 24, 39, 0.9);
+            --panel-soft: rgba(17, 24, 39, 0.76);
+            --header: rgba(12, 17, 27, 0.88);
+            --page-scrim: linear-gradient(180deg, rgba(12, 17, 27, 0.82), rgba(12, 17, 27, 0.66));
+            --grid-a: rgba(20, 184, 166, 0.09);
+            --grid-b: rgba(139, 92, 246, 0.07);
+            --ink: #f8fafc;
+            --muted: #a9b5c5;
+            --line: #243247;
+            --line-strong: #3a4b63;
+            --teal: #2dd4bf;
+            --teal-dark: #5eead4;
+            --violet: #a78bfa;
+            --amber: #fbbf24;
+            --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+            --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+            --feature-bg: linear-gradient(180deg, rgba(19, 78, 74, 0.42), rgba(17, 24, 39, 0.94));
+            --feature-border: rgba(45, 212, 191, 0.34);
+            --year-border: rgba(45, 212, 191, 0.2);
+            --tag-bg: #182338;
+            --tag-border: #2b3b52;
+            --tag-text: #d8e1ec;
+            --contact-bg: linear-gradient(90deg, rgba(5, 9, 16, 0.96), rgba(12, 17, 27, 0.94));
+            --contact-text: #ffffff;
+            --contact-muted: #cbd5e1;
+            --contact-kicker: #67e8f9;
+            --contact-button-bg: #f8fafc;
+            --contact-button-text: #0c111b;
+            --inverse: #07111f;
         }
 
         * {
@@ -38,8 +104,8 @@
             margin: 0;
             color: var(--ink);
             background:
-                linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px),
-                linear-gradient(180deg, rgba(109, 93, 252, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-a) 1px, transparent 1px),
+                linear-gradient(180deg, var(--grid-b) 1px, transparent 1px),
                 var(--page);
             background-size: 44px 44px;
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -51,7 +117,7 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.72));
+            background: var(--page-scrim);
             z-index: -1;
         }
 
@@ -75,7 +141,7 @@
             top: -60px;
             z-index: 10;
             padding: 10px 14px;
-            color: #ffffff;
+            color: var(--inverse);
             background: var(--ink);
             border-radius: var(--radius);
         }
@@ -88,8 +154,8 @@
             position: sticky;
             top: 0;
             z-index: 5;
-            border-bottom: 1px solid rgba(219, 227, 234, 0.9);
-            background: rgba(245, 247, 250, 0.88);
+            border-bottom: 1px solid var(--line);
+            background: var(--header);
             backdrop-filter: blur(18px);
         }
 
@@ -116,7 +182,7 @@
             height: 36px;
             display: grid;
             place-items: center;
-            color: #ffffff;
+            color: var(--inverse);
             background: var(--ink);
             border: 2px solid var(--teal);
             border-radius: var(--radius);
@@ -150,14 +216,45 @@
         }
 
         .nav-links .primary {
-            color: #ffffff;
+            color: var(--inverse);
             background: var(--teal);
         }
 
         .nav-links .primary:hover,
         .nav-links .primary:focus-visible {
-            color: #ffffff;
+            color: var(--inverse);
             background: var(--teal-dark);
+        }
+
+        .theme-toggle {
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            color: var(--ink);
+            background: var(--surface);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font: inherit;
+            font-size: 0.94rem;
+            font-weight: 800;
+        }
+
+        .theme-toggle:hover,
+        .theme-toggle:focus-visible {
+            color: var(--teal-dark);
+            border-color: var(--teal);
+            outline: none;
+        }
+
+        .theme-toggle-mark {
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            background: var(--ink);
+            box-shadow: inset -5px -3px 0 var(--surface);
         }
 
         main {
@@ -237,7 +334,7 @@
             justify-content: center;
             gap: 8px;
             padding: 10px 14px;
-            color: #ffffff;
+            color: var(--inverse);
             background: var(--ink);
             border: 1px solid var(--ink);
             border-radius: var(--radius);
@@ -247,7 +344,7 @@
 
         .button:hover,
         .button:focus-visible {
-            color: #ffffff;
+            color: var(--inverse);
             background: var(--teal-dark);
             border-color: var(--teal-dark);
             outline: none;
@@ -273,7 +370,7 @@
             grid-template-columns: repeat(4, minmax(0, 1fr));
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.74);
+            background: var(--panel-soft);
             box-shadow: var(--shadow);
             overflow: hidden;
         }
@@ -344,8 +441,8 @@
         .contact-band {
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 12px 28px rgba(17, 24, 39, 0.06);
+            background: var(--panel);
+            box-shadow: var(--card-shadow);
         }
 
         .project-card {
@@ -358,9 +455,9 @@
         .project-card.featured {
             grid-column: span 2;
             background:
-                linear-gradient(180deg, rgba(238, 244, 243, 0.88), rgba(255, 255, 255, 0.92)),
+                var(--feature-bg),
                 var(--surface);
-            border-color: rgba(15, 118, 110, 0.34);
+            border-color: var(--feature-border);
         }
 
         .project-topline {
@@ -388,7 +485,7 @@
             padding: 4px 8px;
             color: var(--teal-dark);
             background: var(--surface-2);
-            border: 1px solid rgba(15, 118, 110, 0.18);
+            border: 1px solid var(--year-border);
             border-radius: 6px;
             font-size: 0.78rem;
             font-weight: 900;
@@ -403,9 +500,9 @@
 
         .tag {
             padding: 5px 8px;
-            color: #26313f;
-            background: #f0f4f8;
-            border: 1px solid #d8e1e9;
+            color: var(--tag-text);
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
             border-radius: 6px;
             font-size: 0.78rem;
             font-weight: 800;
@@ -436,7 +533,7 @@
             padding: 18px;
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.76);
+            background: var(--panel-soft);
         }
 
         .more-work h3 {
@@ -557,46 +654,44 @@
             grid-template-columns: 1fr auto;
             gap: 20px;
             align-items: center;
-            background:
-                linear-gradient(90deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.92)),
-                var(--ink);
-            color: #ffffff;
+            background: var(--contact-bg), var(--ink);
+            color: var(--contact-text);
         }
 
         .contact-band p {
             max-width: 690px;
             margin-bottom: 0;
-            color: #d7dde5;
+            color: var(--contact-muted);
         }
 
         .contact-band .section-kicker {
-            color: #8be0d8;
+            color: var(--contact-kicker);
         }
 
         .contact-band .button {
-            color: var(--ink);
-            background: #ffffff;
-            border-color: #ffffff;
+            color: var(--contact-button-text);
+            background: var(--contact-button-bg);
+            border-color: var(--contact-button-bg);
         }
 
         .contact-band .button:hover,
         .contact-band .button:focus-visible {
-            color: #ffffff;
+            color: var(--contact-text);
             background: var(--teal);
             border-color: var(--teal);
         }
 
         .contact-band .button.secondary {
-            color: #ffffff;
+            color: var(--contact-text);
             background: transparent;
-            border-color: rgba(255, 255, 255, 0.38);
+            border-color: var(--contact-button-border);
         }
 
         .contact-band .button.secondary:hover,
         .contact-band .button.secondary:focus-visible {
-            color: #ffffff;
-            border-color: #ffffff;
-            background: rgba(255, 255, 255, 0.08);
+            color: var(--contact-text);
+            border-color: var(--contact-text);
+            background: var(--contact-button-hover);
         }
 
         footer {
@@ -735,6 +830,11 @@
                 <a href="#stack">Stack</a>
                 <a href="#about">About</a>
                 <a class="primary" href="#contact">Contact</a>
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme"
+                    aria-pressed="false">
+                    <span class="theme-toggle-mark" aria-hidden="true"></span>
+                    <span id="themeLabel">Theme</span>
+                </button>
             </div>
         </nav>
     </header>
@@ -760,8 +860,6 @@
                 <a class="button" href="#projects">View projects <span aria-hidden="true">-></span></a>
                 <a class="button secondary" href="https://github.com/ahmadsamehh" target="_blank"
                     rel="noreferrer">GitHub profile <span aria-hidden="true">-></span></a>
-                <a class="button secondary" href="https://linkedin.com/in/ahmadsamehh" target="_blank"
-                    rel="noreferrer">LinkedIn <span aria-hidden="true">-></span></a>
             </div>
 
             <div class="metrics" aria-label="Portfolio highlights">
@@ -1033,15 +1131,13 @@
                     <h2 id="contact-title">Need a clean deployment or CI/CD workflow?</h2>
                     <p>
                         Reach out for Docker, cloud deployment, CI/CD, or developer tooling work. I am easiest to reach
-                        by email, GitHub, or LinkedIn.
+                        by email or GitHub.
                     </p>
                 </div>
                 <div class="contact-actions">
                     <a class="button" href="mailto:ahmadsamehh@gmail.com">Email Ahmad</a>
                     <a class="button secondary" href="https://github.com/ahmadsamehh" target="_blank"
                         rel="noreferrer">GitHub</a>
-                    <a class="button secondary" href="https://linkedin.com/in/ahmadsamehh" target="_blank"
-                        rel="noreferrer">LinkedIn</a>
                 </div>
             </div>
         </section>
@@ -1054,6 +1150,32 @@
 
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
+
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("themeToggle");
+        const themeLabel = document.getElementById("themeLabel");
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+        function applyTheme(theme) {
+            root.dataset.theme = theme;
+            themeToggle.setAttribute("aria-pressed", theme === "dark");
+            themeToggle.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "night"} theme`);
+            themeLabel.textContent = theme === "dark" ? "Light" : "Night";
+        }
+
+        applyTheme(root.dataset.theme || (systemTheme.matches ? "dark" : "light"));
+
+        themeToggle.addEventListener("click", () => {
+            const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+            localStorage.setItem("theme", nextTheme);
+            applyTheme(nextTheme);
+        });
+
+        systemTheme.addEventListener("change", (event) => {
+            if (!localStorage.getItem("theme")) {
+                applyTheme(event.matches ? "dark" : "light");
+            }
+        });
     </script>
 </body>
 
